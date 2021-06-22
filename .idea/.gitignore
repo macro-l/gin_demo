@@ -6,3 +6,6 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+
+# CodeStream ignored files
+/../../gin-demo\.idea/codestream.xml
