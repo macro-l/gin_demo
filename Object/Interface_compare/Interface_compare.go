@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
 /**
@@ -65,4 +66,32 @@ func main() {
 		fmt.Println(ok)
 	}
 
+	fmt.Println("ianimal type :", reflect.TypeOf(ianimal))
+	fmt.Println("ianimal2 type :", reflect.TypeOf(ianimal2))
+
+	//var a = 1
+	//fmt.Println("a type :", a.(type)) // error
+	//var a interface{}
+	//a = 1
+	//fmt.Println("a type :", a.(type)) // error
+	myPrintf(1, "2")
 }
+
+func myPrintf(args ...interface{}) {
+	for _, arg := range args {
+		switch arg.(type) {
+		case int:
+			fmt.Println(arg, "is an int value.")
+		case string:
+			fmt.Printf("\"%s\" is a string value.\n", arg)
+		case bool:
+			fmt.Println(arg, "is a bool value.")
+		default:
+			fmt.Println(arg, "is an unknown type.")
+		}
+	}
+}
+
+//func myPrintf2(args interface{}) {
+//	fmt.Println(args.(type))     // error
+//}
