@@ -55,6 +55,6 @@ func (sa *SparseArray) TransToArray() [][]interface{} {
 }
 
 func main() {
-	a := SparseArray
-	fmt.Println(a)
+	defer fmt.Println("hello world")
+	//fmt.Println(a)
 }
