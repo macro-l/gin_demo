@@ -37,7 +37,7 @@ func NewSparseArray(originArr [][]interface{}) *SparseArray {
 		lengthCol: len(originArr[0]),
 	}
 }
-
+算法
 // 稀疏数组转普通数组
 func (sa *SparseArray) TransToArray() [][]interface{} {
 
