@@ -1,5 +1,5 @@
 /***
- * 冒泡排序
+ * 选择排序
  ***/
 package main
 
@@ -27,28 +27,26 @@ func main() {
 	fmt.Println(data)
 
 	// 开始算法
-	re := bubble(data)
+	re := selection(data)
 
 	// 输出结果
 	fmt.Println(re)
 }
 
-func bubble(data []int) []int {
+func selection(data []int) []int {
 	len := len(data)
 	// 需要处理的个数
-	for i := 0; i < len-1; i++ {
+	for i := 0; i < len; i++ {
 		// 每次处理需要循环的次数
-		//
-		for y := 0; y < len-1-i; y++ {
-			//fmt.Println(data[y-1], " => ", data[y])
-
-			if data[y] > data[y+1] {
-				data[y], data[y+1] = data[y+1], data[y]
+		// 从当前处理点的下一个点开始，直到长度的最后一个
+		for y := i + 1; y < len; y++ {
+			minPoint := i
+			if data[minPoint] > data[y] {
+				data[minPoint], data[y] = data[y], data[minPoint]
 			}
 		}
 		//fmt.Println()
 		//fmt.Println()
-
 	}
 
 	return data

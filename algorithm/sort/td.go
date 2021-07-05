@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	num = 100000
+	num = 10000
 	rr  = rand.New(rand.NewSource(time.Now().UnixNano()))
 	//rand.Seed(time.Now().UnixNano())
 	sourcesPath     = "./source.txt"
