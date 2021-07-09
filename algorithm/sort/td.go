@@ -13,8 +13,10 @@ import (
 )
 
 var (
-	num = 10000
-	rr  = rand.New(rand.NewSource(time.Now().UnixNano()))
+	//num = 10
+	num = 100000
+	//num = 1000000
+	rr = rand.New(rand.NewSource(time.Now().UnixNano()))
 	//rand.Seed(time.Now().UnixNano())
 	sourcesPath     = "./source.txt"
 	sourcesJsonPath = "./source_json.txt"

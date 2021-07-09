@@ -1,5 +1,5 @@
 /***********
- * 冒泡排序
+ * 插入排序
  ***********/
 package main
 
@@ -12,49 +12,43 @@ import (
 )
 
 var (
-	//num = 100000
-	//rand.Seed(time.Now().UnixNano())
-	//sourcesPath     = "./source.txt"
-	//sourcesJsonPath = "./source_json.txt"
 	sourcesJsonPath = "E:\\go\\gin-demo\\algorithm\\sort\\source_json.txt"
 )
 
 func main() {
+	// 开始时间
 	startTime := time.Now().UnixNano()
+
+	// 计算算法时间花费
 	defer delay(startTime)
-	// 获取基础数据
-	data := data(sourcesJsonPath)
-	fmt.Println(data)
+
+	// 获取测试数据流
+	data := data()
+
+	//fmt.Println(data)
 
 	// 开始算法
-	re := bubble(data)
+	insertion(data)
+	//re := insertion(data)
 
 	// 输出结果
-	fmt.Println(re)
+	//fmt.Println(re)
 }
 
-func bubble(data []int) []int {
-	len := len(data)
-	// 需要处理的个数
-	for i := 0; i < len-1; i++ {
-		// 每次处理需要循环的次数
-		//
-		for y := 0; y < len-1-i; y++ {
-			//fmt.Println(data[y-1], " => ", data[y])
-
-			if data[y] > data[y+1] {
-				data[y], data[y+1] = data[y+1], data[y]
-			}
+func insertion(data []int) []int {
+	for i := range data {
+		preIndex := i - 1
+		current := data[i]
+		for preIndex >= 0 && data[preIndex] > current {
+			data[preIndex+1] = data[preIndex]
+			preIndex -= 1
 		}
-		//fmt.Println()
-		//fmt.Println()
-
+		data[preIndex+1] = current
 	}
-
 	return data
 }
 
-func data(sourcesJsonPath string) []int {
+func data() []int {
 	sources_json, err := ioutil.ReadFile(sourcesJsonPath)
 	if err != nil {
 		fmt.Println(err.Error())

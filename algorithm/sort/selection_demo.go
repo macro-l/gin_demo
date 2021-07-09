@@ -1,6 +1,6 @@
-/***********
- * 冒泡排序
- ***********/
+/***
+ * 选择排序
+ ***/
 package main
 
 import (
@@ -27,30 +27,23 @@ func main() {
 	fmt.Println(data)
 
 	// 开始算法
-	re := bubble(data)
+	re := selection(data)
 
 	// 输出结果
 	fmt.Println(re)
 }
 
-func bubble(data []int) []int {
-	len := len(data)
-	// 需要处理的个数
-	for i := 0; i < len-1; i++ {
-		// 每次处理需要循环的次数
-		//
-		for y := 0; y < len-1-i; y++ {
-			//fmt.Println(data[y-1], " => ", data[y])
-
-			if data[y] > data[y+1] {
-				data[y], data[y+1] = data[y+1], data[y]
+func selection(data []int) []int {
+	length := len(data)
+	for i := 0; i < length-1; i++ {
+		min := i
+		for j := i + 1; j < length; j++ {
+			if data[min] > data[j] {
+				min = j
 			}
 		}
-		//fmt.Println()
-		//fmt.Println()
-
+		data[i], data[min] = data[min], data[i]
 	}
-
 	return data
 }
 

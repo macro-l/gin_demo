@@ -34,23 +34,14 @@ func main() {
 }
 
 func bubble(data []int) []int {
-	len := len(data)
-	// 需要处理的个数
-	for i := 0; i < len-1; i++ {
-		// 每次处理需要循环的次数
-		//
-		for y := 0; y < len-1-i; y++ {
-			//fmt.Println(data[y-1], " => ", data[y])
-
-			if data[y] > data[y+1] {
-				data[y], data[y+1] = data[y+1], data[y]
+	length := len(data)
+	for i := 0; i < length; i++ {
+		for j := 0; j < length-1-i; j++ {
+			if data[j] > data[j+1] {
+				data[j], data[j+1] = data[j+1], data[j]
 			}
 		}
-		//fmt.Println()
-		//fmt.Println()
-
 	}
-
 	return data
 }
 

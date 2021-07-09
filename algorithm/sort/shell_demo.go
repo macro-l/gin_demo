@@ -1,5 +1,5 @@
 /***********
- * 冒泡排序
+ * 希尔排序
  ***********/
 package main
 
@@ -12,49 +12,59 @@ import (
 )
 
 var (
-	//num = 100000
-	//rand.Seed(time.Now().UnixNano())
-	//sourcesPath     = "./source.txt"
-	//sourcesJsonPath = "./source_json.txt"
 	sourcesJsonPath = "E:\\go\\gin-demo\\algorithm\\sort\\source_json.txt"
 )
 
 func main() {
+	// 开始时间
 	startTime := time.Now().UnixNano()
+
+	// 计算算法时间花费
 	defer delay(startTime)
-	// 获取基础数据
-	data := data(sourcesJsonPath)
-	fmt.Println(data)
+
+	// 获取测试数据流
+	data := data()
+
+	//fmt.Println(data)
 
 	// 开始算法
-	re := bubble(data)
+	//shell(data)
+	re := shell(data)
 
 	// 输出结果
 	fmt.Println(re)
+	// 验证
+	//for i := 1; i < 1000000; i++ {
+	//	if 1 != (re[i] - re[i-1]) {
+	//		fmt.Println("err")
+	//		break
+	//	}
+	//}
 }
 
-func bubble(data []int) []int {
-	len := len(data)
-	// 需要处理的个数
-	for i := 0; i < len-1; i++ {
-		// 每次处理需要循环的次数
-		//
-		for y := 0; y < len-1-i; y++ {
-			//fmt.Println(data[y-1], " => ", data[y])
-
-			if data[y] > data[y+1] {
-				data[y], data[y+1] = data[y+1], data[y]
-			}
-		}
-		//fmt.Println()
-		//fmt.Println()
-
+func shell(data []int) []int {
+	length := len(data)
+	gap := 1
+	for gap < length/3 {
+		gap = gap*3 + 1
 	}
-
+	fmt.Println(gap)
+	for gap > 0 {
+		for i := gap; i < length; i++ {
+			temp := data[i]
+			j := i - gap
+			for j >= 0 && data[j] > temp {
+				data[j+gap] = data[j]
+				j -= gap
+			}
+			data[j+gap] = temp
+		}
+		gap = gap / 3
+	}
 	return data
 }
 
-func data(sourcesJsonPath string) []int {
+func data() []int {
 	sources_json, err := ioutil.ReadFile(sourcesJsonPath)
 	if err != nil {
 		fmt.Println(err.Error())
