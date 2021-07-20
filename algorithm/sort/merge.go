@@ -34,16 +34,53 @@ func main() {
 }
 
 func merge(data *[]int) []int {
-	// 终止递归条件
-	if len(*data) <= 2 {
-		// 终止处理
-		data
-		return
-	}
+	dlen := len(*data)
 
+	// 终止递归条件
+	if 2 == dlen {
+		if (*data)[0] > (*data)[1] {
+			(*data)[0], (*data)[1] = (*data)[1], (*data)[0]
+		}
+		return *data
+	}
+	if 1 == dlen {
+		return *data
+	}
+	fdata := (*data)[0:(dlen / 2)]
+	sdata := (*data)[(dlen / 2):dlen]
+
+	fre := merge(&fdata)
+	sre := merge(&sdata)
+	flen := len(fre)
+	slen := len(sre)
+	findex := 0
+	sindex := 0
+
+	var re []int
+	for findex != flen || sindex != slen {
+
+		if flen == findex {
+			re = append(re, sre[sindex])
+			sindex++
+			continue
+		}
+		if slen == sindex {
+			re = append(re, fre[findex])
+			findex++
+			continue
+		}
+		if fre[findex] > sre[sindex] {
+			re = append(re, sre[sindex])
+			sindex++
+		} else {
+			re = append(re, fre[findex])
+			findex++
+		}
+
+	}
 	// 递归处理流程
 
-	return data
+	return re
 }
 
 func data() []int {
